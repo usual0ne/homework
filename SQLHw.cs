@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MinionsDB
 {
-    class Program
+    class SQLHw
     {
         static string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=Minions;Trusted_Connection=True";
 
