@@ -1,0 +1,13 @@
+C:\Users\Starling\source\repos\ListHW\ListHW\bin\Debug\netcoreapp3.1\ListHW.exe
+C:\Users\Starling\source\repos\ListHW\ListHW\bin\Debug\netcoreapp3.1\ListHW.deps.json
+C:\Users\Starling\source\repos\ListHW\ListHW\bin\Debug\netcoreapp3.1\ListHW.runtimeconfig.json
+C:\Users\Starling\source\repos\ListHW\ListHW\bin\Debug\netcoreapp3.1\ListHW.runtimeconfig.dev.json
+C:\Users\Starling\source\repos\ListHW\ListHW\bin\Debug\netcoreapp3.1\ListHW.dll
+C:\Users\Starling\source\repos\ListHW\ListHW\bin\Debug\netcoreapp3.1\ListHW.pdb
+C:\Users\Starling\source\repos\ListHW\ListHW\obj\Debug\netcoreapp3.1\ListHW.csprojAssemblyReference.cache
+C:\Users\Starling\source\repos\ListHW\ListHW\obj\Debug\netcoreapp3.1\ListHW.AssemblyInfoInputs.cache
+C:\Users\Starling\source\repos\ListHW\ListHW\obj\Debug\netcoreapp3.1\ListHW.AssemblyInfo.cs
+C:\Users\Starling\source\repos\ListHW\ListHW\obj\Debug\netcoreapp3.1\ListHW.csproj.CoreCompileInputs.cache
+C:\Users\Starling\source\repos\ListHW\ListHW\obj\Debug\netcoreapp3.1\ListHW.dll
+C:\Users\Starling\source\repos\ListHW\ListHW\obj\Debug\netcoreapp3.1\ListHW.pdb
+C:\Users\Starling\source\repos\ListHW\ListHW\obj\Debug\netcoreapp3.1\ListHW.genruntimeconfig.cache
