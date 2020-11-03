@@ -124,6 +124,39 @@ namespace ListHW
                 current.Element = element;
             }
 
+            public Node<T> this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= this.size)
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+
+                    Node<T> current = this.head;
+                    int counter = 0;
+                    while (counter < index)
+                    {
+                        current = current.Next;
+                        counter++;
+                    }
+                    return current;
+                }
+
+                set
+                {
+                    Node<T> current = this.head;
+                    int counter = 0;
+                    while (counter < index)
+                    {
+                        current = current.Next;
+                        counter++;
+                    }
+
+                    current = value;
+                }
+            }
+
             public void Delete(int index)
             {
                 if (index == 1)
@@ -187,12 +220,19 @@ namespace ListHW
             myList.AddLast(m2);
             myList.AddLast(m3);
             myList.AddByIndex(m4, 3);
+
+
+            //работа индексатора
+            Console.WriteLine(myList[1].Element.Age);
+
+
+            //работа итератора
             foreach (Minion m in myList)
             {
                 Console.WriteLine(m.Age + " " + m.Name);
             }
 
-            
+
 
             Console.WriteLine("\n\n");
             Console.WriteLine("Удаляем первый:\n");

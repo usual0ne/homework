@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Starling\\source\\repos\\ListHW\\ListHW\\ListHW.csproj",
+      "projectUniqueName": "C:\\Users\\Starling\\Desktop\\Новая папка\\homework\\linkedList\\ListHW\\ListHW.csproj",
       "projectName": "ListHW",
-      "projectPath": "C:\\Users\\Starling\\source\\repos\\ListHW\\ListHW\\ListHW.csproj",
+      "projectPath": "C:\\Users\\Starling\\Desktop\\Новая папка\\homework\\linkedList\\ListHW\\ListHW.csproj",
       "packagesPath": "C:\\Users\\Starling\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Starling\\source\\repos\\ListHW\\ListHW\\obj\\",
+      "outputPath": "C:\\Users\\Starling\\Desktop\\Новая папка\\homework\\linkedList\\ListHW\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Starling\\AppData\\Roaming\\NuGet\\NuGet.Config",
