@@ -9,8 +9,8 @@ namespace Predicates
     {
         static void Main(string[] args)
         {
-            Task4();
-;           Console.WriteLine();
+           Task4();
+           Console.WriteLine();
         }
 
 
