@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using MoviesApp.Data;
 using MoviesApp.Models;
 using MoviesApp.ViewModels;
+using MoviesApp.Filters;
 
 namespace MoviesApp.Controllers
 {
@@ -69,6 +70,7 @@ namespace MoviesApp.Controllers
         // POST: Actors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [EnsureActorAge(7, 99)]
         public IActionResult Create([Bind("Name,LastName,BirthDate")] InputActorViewModel inputModel)
         {
             if (ModelState.IsValid)
@@ -114,6 +116,7 @@ namespace MoviesApp.Controllers
         // POST: Actors/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [EnsureActorAge(7, 99)]
         public IActionResult Edit(int id, [Bind("Name,LastName,BirthDate")] EditActorViewModel editModel)
         {
             if (ModelState.IsValid)
@@ -181,7 +184,7 @@ namespace MoviesApp.Controllers
             var actor = _context.Actors.Find(id);
             _context.Actors.Remove(actor);
             _context.SaveChanges();
-            _logger.LogError($"Movie with id {actor.Id} has been deleted!");
+            _logger.LogError($"Actor with id {actor.Id} has been deleted!");
             return RedirectToAction(nameof(Index));
         }
 
