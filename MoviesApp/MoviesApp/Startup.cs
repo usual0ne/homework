@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using MoviesApp.Data;
 using MoviesApp.Middleware;
 using MoviesApp.Filters;
+using AutoMapper;
 
 namespace MoviesApp
 {
@@ -34,6 +35,8 @@ namespace MoviesApp
 
             services.AddDbContext<MoviesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MoviesContext")));
+
+            services.AddAutoMapper(typeof(Startup));
 
         }
 
