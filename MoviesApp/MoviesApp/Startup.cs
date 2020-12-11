@@ -15,6 +15,7 @@ using MoviesApp.Data;
 using MoviesApp.Middleware;
 using MoviesApp.Filters;
 using AutoMapper;
+using MoviesApp.Services;
 
 namespace MoviesApp
 {
@@ -37,6 +38,8 @@ namespace MoviesApp
                 options.UseSqlServer(Configuration.GetConnectionString("MoviesContext")));
 
             services.AddAutoMapper(typeof(Startup));
+
+            services.AddScoped<IActorService, ActorService>();
 
         }
 
