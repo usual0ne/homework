@@ -9,7 +9,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using MoviesApp.Services;
 using MoviesApp.Services.Dto;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoviesApp.Controllers
 {
@@ -27,6 +27,7 @@ namespace MoviesApp.Controllers
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<ActorDto>))]
         [ProducesResponseType(404)]
+        [Authorize]
         public ActionResult<IEnumerable<ActorDto>> GetActors()
         {
             return Ok(_service.GetAllActors());
@@ -35,6 +36,7 @@ namespace MoviesApp.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(ActorDto))]
         [ProducesResponseType(404)]
+        [Authorize]
         public IActionResult GetById(int id)
         {
             var actor = _service.GetActor(id);
@@ -47,6 +49,7 @@ namespace MoviesApp.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult<ActorDto> PostActor(ActorDto inputDto)
         {
             var actor = _service.AddActor(inputDto);
@@ -56,6 +59,7 @@ namespace MoviesApp.Controllers
 
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult UpdateActor(int id, ActorDto editDto)
         {
             var actor = _service.UpdateActor(editDto);
@@ -69,6 +73,7 @@ namespace MoviesApp.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult<ActorDto> DeleteActor(int id)
         {
             var actor = _service.DeleteActor(id);

@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using MoviesApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace MoviesApp.Data
 {
-    public class MoviesContext : DbContext
+    public class MoviesContext : IdentityDbContext<ApplicationUser>
     {
         public MoviesContext (DbContextOptions<MoviesContext> options)
             : base(options)
@@ -16,10 +18,12 @@ namespace MoviesApp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<MoviesActors>(entity =>
             {
                 entity.HasKey(ma => new { ma.MovieId, ma.ActorId });
-            });
+            });           
         }
     }
 }
+

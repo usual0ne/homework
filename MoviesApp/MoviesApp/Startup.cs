@@ -16,6 +16,8 @@ using MoviesApp.Middleware;
 using MoviesApp.Filters;
 using AutoMapper;
 using MoviesApp.Services;
+using MoviesApp.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace MoviesApp
 {
@@ -37,6 +39,13 @@ namespace MoviesApp
             services.AddDbContext<MoviesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MoviesContext")));
 
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+            })
+            .AddEntityFrameworkStores<MoviesContext>()
+            .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddScoped<IActorService, ActorService>();
@@ -57,6 +66,7 @@ namespace MoviesApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             
             

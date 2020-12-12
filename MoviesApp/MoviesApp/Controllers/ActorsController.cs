@@ -7,6 +7,7 @@ using MoviesApp.Data;
 using MoviesApp.Models;
 using MoviesApp.ViewModels;
 using MoviesApp.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoviesApp.Controllers
 {
@@ -23,6 +24,7 @@ namespace MoviesApp.Controllers
 
         // GET: Actors
         [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
             return View(_context.Actors.Select(a => new ActorViewModel
@@ -36,6 +38,7 @@ namespace MoviesApp.Controllers
 
         // GET: Actors/Details
         [HttpGet]
+        [Authorize]
         public IActionResult Details(int? id)
         {
             if (id == null)
@@ -62,6 +65,7 @@ namespace MoviesApp.Controllers
 
         // GET: Actors/Create
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -69,6 +73,7 @@ namespace MoviesApp.Controllers
 
         // POST: Actors/Create
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         [EnsureActorAge(7, 99)]
         public IActionResult Create([Bind("Name,LastName,BirthDate")] InputActorViewModel inputModel)
@@ -89,6 +94,7 @@ namespace MoviesApp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         // GET: Actors/Edit
         public IActionResult Edit(int? id)
         {
@@ -115,6 +121,7 @@ namespace MoviesApp.Controllers
 
         // POST: Actors/Edit
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         [EnsureActorAge(7, 99)]
         public IActionResult Edit(int id, [Bind("Name,LastName,BirthDate")] EditActorViewModel editModel)
@@ -153,6 +160,7 @@ namespace MoviesApp.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         // GET: Actors/Delete
         public IActionResult Delete(int? id)
         {
@@ -178,6 +186,7 @@ namespace MoviesApp.Controllers
 
         // POST: Actors/Delete
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {

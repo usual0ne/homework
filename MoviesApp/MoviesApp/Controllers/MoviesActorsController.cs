@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -22,6 +23,7 @@ namespace MoviesApp.Controllers
 
         // GET: Movies and actors
         [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
             return View(_context.MoviesActors.Select(ma => new MoviesActorsViewModel
