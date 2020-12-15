@@ -35,7 +35,7 @@ namespace KursachAlgo
                 var current = searchNode;
                 path.Add(current);
 
-                //search for connected vertices beginning from the end of orderBFSList
+                //search for connected to searchNode vertices beginning from the end of orderBFSList
                 int index = orderBFSList.IndexOf(searchNode);
                 for (int i = index; i >= 0; i--)
                 {
