@@ -7,7 +7,7 @@ namespace KursachAlgo
 {
     public class Tree<T> where T : IComparable
     {
-        public Node<T> Root { get; private set; }
+        protected Node<T> Root { get; set; }
 
         public Tree(Node<T> root)
         {
@@ -16,18 +16,19 @@ namespace KursachAlgo
 
 
         //Prints path from the root to chosen node
-        public void PrintPath(List<Node<T>> path)
+        protected void PrintPath(List<Node<T>> path, string delimiter)
         {
-            foreach (var node in path)
+
+            for(int i = path.Count - 1; i > 0; i--)
             {
-                Console.Write(node.Value + " ");
+                Console.Write(path[i].Value + delimiter);
             }
+            Console.Write(path[0].Value);
         }
 
-
         //Finds path from the root to chosen node
-        public List<Node<T>> FindPath(Node<T> searchNode, List<Node<T>> orderBFSList)
-        {            
+       protected List<Node<T>> FindPath(Node<T> searchNode, List<Node<T>> orderBFSList)
+       {
             List<Node<T>> path = new List<Node<T>>();
 
             if (orderBFSList.Contains(searchNode))
@@ -50,17 +51,17 @@ namespace KursachAlgo
             return path;
         }
 
-        public List<Node<T>> orderBFS(Node<T> root)
+        protected List<Node<T>> orderBFS(Node<T> root)
         {
             var queue = new Queue<Node<T>>();
             var result = new List<Node<T>>();
             queue.Enqueue(root);
 
-            while(queue.Count > 0)
+            while (queue.Count > 0)
             {
                 Node<T> child = queue.Dequeue();
                 result.Add(child);
-                foreach(var c in child.Children)
+                foreach (var c in child.Children)
                 {
                     queue.Enqueue(c);
                 }
@@ -68,6 +69,37 @@ namespace KursachAlgo
 
             return result;
         }
+
+        protected void AddNode(Node<T> insertionNode, Node<T> connectionNode)
+        {
+            connectionNode.Children.Add(insertionNode);
+            insertionNode.Parent = connectionNode;
+        }
+
+        protected void DeleteNode(Node<T> deletionNode, Node<T> connectionNode)
+        {
+            deletionNode.Parent = null;
+            connectionNode.Children.Remove(deletionNode);
+        }
+
+        /*public void ConnectSubtree(Tree<T> subtree, Node<T> connectionNode)
+        {
+            if(connectionNode.Children.Count == 0)
+            {
+                connectionNode.Children.Add(subtree.Root);
+                subtree.Root.Parent = connectionNode;
+            }
+        }
+
+
+        public void DisconnectSubtree(Tree<T> subtree, Node<T> connectionNode)
+        {
+            if (connectionNode.Children.Count != 0)
+            {
+                subtree.Root.Parent = null;
+                connectionNode.Children.Clear();
+            }
+        }*/       
     }
 }
 
