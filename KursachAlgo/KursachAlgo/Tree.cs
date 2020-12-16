@@ -18,7 +18,6 @@ namespace KursachAlgo
         //Prints path from the root to chosen node
         protected void PrintPath(List<Node<T>> path, string delimiter)
         {
-
             for(int i = path.Count - 1; i > 0; i--)
             {
                 Console.Write(path[i].Value + delimiter);
@@ -80,26 +79,7 @@ namespace KursachAlgo
         {
             deletionNode.Parent = null;
             connectionNode.Children.Remove(deletionNode);
-        }
-
-        /*public void ConnectSubtree(Tree<T> subtree, Node<T> connectionNode)
-        {
-            if(connectionNode.Children.Count == 0)
-            {
-                connectionNode.Children.Add(subtree.Root);
-                subtree.Root.Parent = connectionNode;
-            }
-        }
-
-
-        public void DisconnectSubtree(Tree<T> subtree, Node<T> connectionNode)
-        {
-            if (connectionNode.Children.Count != 0)
-            {
-                subtree.Root.Parent = null;
-                connectionNode.Children.Clear();
-            }
-        }*/       
+        }      
     }
 }
 

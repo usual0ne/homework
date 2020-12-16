@@ -8,93 +8,68 @@ namespace KursachAlgo
         static void Main(string[] args)
         {
             Node<string> root = new Node<string>("root");
-
-            Node<string> me = new Node<string>("me");
-
-            Node<string> mom = new Node<string>("mom");
-
-            Node<string> photos = new Node<string>("photos");
-
             SimpleFileSystem<string> sfs = new SimpleFileSystem<string>(root);
 
-            
-            sfs.AddFile(me, root);
+            Node<string> system = new Node<string>("system");
+            sfs.AddFile(system, root);
 
-            sfs.AddFile(mom, root);
+            Node<string> drivers = new Node<string>("drivers");
+            sfs.AddFile(drivers, system);
 
-            sfs.AddFile(photos, me);
+            Node<string> configs = new Node<string>("configs");
+            sfs.AddFile(configs, system);
 
-            sfs.ShowPathToFile(photos, "/");
+            Node<string> users = new Node<string>("users");
+            sfs.AddFile(users, root);
 
+            Node<string> john = new Node<string>("john");
+            sfs.AddFile(john, users);
 
+            Node<string> alex = new Node<string>("alex");
+            sfs.AddFile(alex, users);
 
-            /*//lv 0
-            Node<string> m = new Node<string>("m");
+            Console.WriteLine("Path to 'drivers':");
+            sfs.ShowPathToFile(drivers, "/");
+            Console.WriteLine("\n\nPath to 'configs':");
+            sfs.ShowPathToFile(configs, "/");
 
-            //lv 1
-            Node<string> a = new Node<string>("a", m);
-            m.Children.Add(a);
-
-            //lv 2
-            Node<string> b = new Node<string>("b", a);
-            Node<string> c = new Node<string>("c", a);
-            a.Children.Add(b);
-            a.Children.Add(c);
-
-            //lv 3
-            Node<string> d = new Node<string>("d", b);
-            Node<string> f = new Node<string>("f", b);
-            Node<string> h = new Node<string>("h", b);
-            Node<string> g = new Node<string>("g", c);
-            b.Children.Add(d);
-            b.Children.Add(f);
-            b.Children.Add(h);
-            c.Children.Add(g);
-
-            Tree<string> tree = new Tree<string>(a);
+            Console.WriteLine("\n\nPath to 'john':");
+            sfs.ShowPathToFile(john, "/");
+            Console.WriteLine("\n\nPath to 'alex':");
+            sfs.ShowPathToFile(alex, "/");
 
 
-            List<Node<string>> bfsList = new List<Node<string>>();
 
-            *//*bfsList = tree.orderBFS(m);
+            Node<string> flashCard = new Node<string>("flash-card");
+            SimpleFileSystem<string> flashCardSfs = new SimpleFileSystem<string>(flashCard);
 
-            tree.PrintPath(bfsList);
+            Node<string> music = new Node<string>("music");
+            flashCardSfs.AddFile(music, flashCard);
 
-            Console.WriteLine();
+            Node<string> films = new Node<string>("films");
+            flashCardSfs.AddFile(films, flashCard);
 
-            tree.PrintPath(tree.FindPath(g, bfsList));*/
+            Node<string> comedies = new Node<string>("comedies");
+            flashCardSfs.AddFile(comedies, films);
 
-            /*Node<string> k = new Node<string>("k");
-            Node<string> l = new Node<string>("l", k);
-            Node<string> z = new Node<string>("z", k);
-            k.Children.Add(l);
-            k.Children.Add(z);
+            Console.WriteLine("\n\nMounting flashcard file system to the main file system...");
+            sfs.Mount(flashCardSfs);
 
-            Tree<string> subtree = new Tree<string>(k);
+            Console.WriteLine("\nPath to 'music':");
+            sfs.ShowPathToFile(music, "/");
+            Console.WriteLine("\n\nPath to 'comedies':");
+            sfs.ShowPathToFile(comedies, "/");
 
-            tree.InsertNode(k, b);
+            Console.WriteLine("\n\nUnmounting flashcard file system from the main file system...");
 
-            bfsList = tree.orderBFS(m);
-            //tree.PrintPath(tree.FindPath(l, bfsList));
-            tree.PrintPath(bfsList);
+            sfs.Unmount(flashCardSfs);
 
-            Console.WriteLine("\nDisconnect k subtree:");
-
-            tree.DeleteNode(k, b);
-            bfsList = tree.orderBFS(m);
-            tree.PrintPath(bfsList);*//*
-
-            Node<string> o = new Node<string>("o");
-
-            tree.InsertNode(o, a);
-            bfsList = tree.orderBFS(m);
-            tree.PrintPath(bfsList);
+            Console.WriteLine("\nPath to 'music':");
+            sfs.ShowPathToFile(music, "/");
+            Console.WriteLine("\n\nPath to 'comedies':");
+            sfs.ShowPathToFile(comedies, "/");
 
             Console.WriteLine();
-
-            tree.DeleteNode(o, a);
-            bfsList = tree.orderBFS(m);
-            tree.PrintPath(bfsList);*/
         }
     }
 }

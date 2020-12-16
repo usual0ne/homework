@@ -6,8 +6,6 @@ namespace KursachAlgo
 {
     public class SimpleFileSystem<T> : Tree<T> where T : IComparable
     {
-        //private KursachAlgo.File root;
-
         public SimpleFileSystem(Node<T> root) : base(root)
         {
             this.Root = root;
@@ -18,14 +16,21 @@ namespace KursachAlgo
             this.AddFile(outerFileSystem.Root, this.Root);
         }
 
-        public void UnMount(SimpleFileSystem<T> innerFileSystem)
+        public void Unmount(SimpleFileSystem<T> innerFileSystem)
         {
             this.DeleteNode(innerFileSystem.Root, this.Root);
         }
 
         public void ShowPathToFile(Node<T> file, string delimiter)
         {
-            PrintPath(FindPath(file, this.orderBFS(this.Root)), delimiter);
+            if (!FindPath(file, this.orderBFS(this.Root)).Contains(file))
+            {
+                Console.WriteLine("Path to the file '" + file.Value + "' does not exist!");
+            }
+            else
+            {
+                PrintPath(FindPath(file, this.orderBFS(this.Root)), delimiter);
+            }
         }
 
         public void AddFile(Node<T> newFile, Node<T> previousFile)
