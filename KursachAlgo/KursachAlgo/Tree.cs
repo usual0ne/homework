@@ -58,11 +58,11 @@ namespace KursachAlgo
 
             while (queue.Count > 0)
             {
-                Node<T> child = queue.Dequeue();
-                result.Add(child);
-                foreach (var c in child.Children)
+                Node<T> node = queue.Dequeue();
+                result.Add(node);
+                foreach (var n in node.Children)
                 {
-                    queue.Enqueue(c);
+                    queue.Enqueue(n);
                 }
             }
 
